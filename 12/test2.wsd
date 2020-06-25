@@ -1,0 +1,45 @@
+@startuml
+title test
+ChangeCartridge <|-- Color
+ChangeCartridge <|-- Pen
+
+Pen <|-- Mannenhitu
+Pen <|-- Sainpen
+Pen <|-- Fude
+interface Pen{
+    pen
+    limit
+
+    setPen()
+    getPen()
+}
+class Mannenhitu
+class Sainpen
+class Fude
+
+Color <|-- Black
+Color <|-- Red
+Color <|-- Blue
+Color <|-- White
+
+interface Color{
+    colornum
+
+    setColor()
+    getColor()
+}
+class Black
+class Red
+class Blue
+class White
+
+class ChangeCartridge{
+    
+
+}
+
+class Filereader{
+    fileread
+}
+
+@enduml
