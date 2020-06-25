@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-public class Pen {
-    static ArrayList<ArrayList<String>> penlist = new ArrayList<ArrayList<String>>();
+public class PenData implements IData{
+    ArrayList<ArrayList<String>> penlist = new ArrayList<ArrayList<String>>();
     int limit;
-    Pen(){
+    PenData(){
         limit = -999;
         ArrayList<String> mannenhitu = new ArrayList<String>();
         mannenhitu.add("F");
@@ -25,7 +25,7 @@ public class Pen {
     }
 
     //存在するか
-    public void setPen(String n_pen){
+    public void setItem(String n_pen){
         for (int i = 0; i < penlist.size(); i++) {
             if (penlist.get(i).get(0) == n_pen) {
                 limit = Integer.parseInt(penlist.get(i).get(1));
@@ -34,7 +34,7 @@ public class Pen {
     }
 
     //無ければ-999を返す
-    public int getPen(){
+    public int getItem(){
         return limit;
     }
 }

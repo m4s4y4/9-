@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Color{
+public  class ColorData implements  IData{
     ArrayList<ArrayList<String>> colorlist = new ArrayList<ArrayList<String>>();
-    int e_color;
+    int colorcode;
 
-    Color() {
-        e_color = -999;
+    ColorData() {
+        colorcode = -999;
         ArrayList<String> black = new ArrayList<String>();
         black.add("0");
         black.add("黒");
@@ -28,16 +28,16 @@ public class Color{
     }
 
     // 存在するかどうか
-    public void setColor(String n_pen) {
+    public void setItem(String color) {
         for (int i = 0; i < colorlist.size(); i++) {
-            if (colorlist.get(i).get(0) == n_pen) {
-                e_color = Integer.parseInt(colorlist.get(i).get(0));
+            if (Integer.parseInt(colorlist.get(i).get(0)) == Integer.parseInt(color)) {
+                colorcode = Integer.parseInt(colorlist.get(i).get(0));
             }
         }
     }
 
     //無ければ-999を返す
-    public int getPen() {
-        return e_color;
+    public int getItem() {
+        return colorcode;
     }
 }
