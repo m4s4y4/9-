@@ -4,7 +4,7 @@ public class Pen {
     static ArrayList<ArrayList<String>> penlist = new ArrayList<ArrayList<String>>();
     int limit;
     Pen(){
-        limit = 0;
+        limit = -999;
         ArrayList<String> mannenhitu = new ArrayList<String>();
         mannenhitu.add("F");
         mannenhitu.add("2");
@@ -23,6 +23,8 @@ public class Pen {
         fude.add("筆");
         penlist.add(fude);
     }
+
+    //存在するか
     public void setPen(String n_pen){
         for (int i = 0; i < penlist.size(); i++) {
             if (penlist.get(i).get(0) == n_pen) {
@@ -31,6 +33,7 @@ public class Pen {
         }
     }
 
+    //無ければ-999を返す
     public int getPen(){
         return limit;
     }

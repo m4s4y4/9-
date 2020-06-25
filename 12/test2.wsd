@@ -1,40 +1,26 @@
 @startuml
 title test
-ChangeCartridge <|-- Color
-ChangeCartridge <|-- Pen
+ChangeCartridge <|-- ColorDeta
+ChangeCartridge <|-- PenDeta
 
-Pen <|-- Mannenhitu
-Pen <|-- Sainpen
-Pen <|-- Fude
-interface Pen{
+class PenDeta{
     pen
     limit
 
     setPen()
     getPen()
+    getLimit()
 }
-class Mannenhitu
-class Sainpen
-class Fude
 
-Color <|-- Black
-Color <|-- Red
-Color <|-- Blue
-Color <|-- White
-
-interface Color{
+class ColorDeta{
     colornum
 
     setColor()
     getColor()
 }
-class Black
-class Red
-class Blue
-class White
 
 class ChangeCartridge{
-    
+
 
 }
 
