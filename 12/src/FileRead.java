@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class FileRead {
     String filename;
     ArrayList<ArrayList<String>> datalist = new ArrayList<ArrayList<String>>();
+    ArrayList<String> databox = new ArrayList<String>();
 
     FileRead() {
         filename = "-999";
@@ -16,16 +17,18 @@ public class FileRead {
         try {
             File file = new File(filename);
             FileReader filereader = new FileReader(file);
-            while (filereader.read() != -1) {
-                ArrayList<String> databox = new ArrayList<String>();
-                while (true) {
+            while (true) {
+                datalist.clear();
+                for (int i = 0; i < 3; i++) {
                     databox.add(String.valueOf(filereader.read()));
                     if (String.valueOf(filereader.read()) != ",") {
                         filereader.read();
                         break;
                     }
                 }
-
+                if (filereader.read() != -1) {
+                    break;
+                }
                 datalist.add(databox);
             }
             filereader.close();
@@ -40,5 +43,8 @@ public class FileRead {
 
     public void setFileName(String fileString){
         filename = fileString;
+    }
+    public ArrayList<ArrayList<String>> getFileData() {
+        return datalist;
     }
 }
