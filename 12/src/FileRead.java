@@ -6,45 +6,51 @@ import java.util.ArrayList;
 
 public class FileRead {
     String filename;
-    ArrayList<ArrayList<String>> datalist = new ArrayList<ArrayList<String>>();
-    ArrayList<String> databox = new ArrayList<String>();
+    ArrayList<ArrayList<String>> datalists = new ArrayList<ArrayList<String>>();
+    ArrayList<String> datalist = new ArrayList<String>();
 
     FileRead() {
         filename = "-999";
     }
 
-    public void predata(){
+    public void MakeDataList() {
         try {
             File file = new File(filename);
             FileReader filereader = new FileReader(file);
+            IData pData = new PenData();
+
             while (true) {
-                datalist.clear();
+                datalists.clear();
+                // 1~3
                 for (int i = 0; i < 3; i++) {
-                    databox.add(String.valueOf(filereader.read()));
-                    if (String.valueOf(filereader.read()) != ",") {
-                        filereader.read();
-                        break;
-                    }
+                    datalist.add(String.valueOf(filereader.read()));
                 }
-                if (filereader.read() != -1) {
+                if (String.valueOf(filereader.read()) != ",") {
+                    filereader.read();
+                }
+                // 4,5
+                pData.setItem(datalist.get(0));
+                datalist.add(String.valueOf(pData.getItem()));
+                datalist.add(String.valueOf(pData.getItem()));
+                //1~5をリストに追加
+                datalists.add(datalist);
+                if (filereader.read() != -1) {//空ならば
                     break;
                 }
-                datalist.add(databox);
             }
             filereader.close();
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e);
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
 
     }
 
-
-    public void setFileName(String fileString){
+    public void setFileName(String fileString) {
         filename = fileString;
     }
     public ArrayList<ArrayList<String>> getFileData() {
-        return datalist;
+        return datalists;
     }
 }
