@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class FileRead {
     String filename;
     ArrayList<ArrayList<String>> datalists = new ArrayList<ArrayList<String>>();
-    ArrayList<String> datalist = new ArrayList<String>();
+    ArrayList<Character> filelist = new ArrayList<>();
+    int data;
+    PenData pData = new PenData();
 
     FileRead(String filename) {
         this.filename = filename;
@@ -17,31 +19,28 @@ public class FileRead {
         try {
             File file = new File(filename);
             FileReader filereader = new FileReader(file);
-            PenData pData = new PenData();
 
-            while (true) {
-                datalists.clear();
-                // 1~3
-                for (int i = 0; i < 3; i++) {
-                    datalist.add(String.valueOf(filereader.read()));
-                }
-                if (String.valueOf(filereader.read()) != ",") {
-                    filereader.read();
-                }
-                // 4
-                pData.setPenCode(datalist.get(0));
-                datalist.add(pData.getLimit());
-                // 1~4をリストに追加
-                datalists.add(datalist);
-                if (filereader.read() != -1) {// 空ならば
-                    break;
-                }
+            while ((data = filereader.read()) != -1) {
+                filelist.add((char) data);
             }
             filereader.close();
         } catch (FileNotFoundException e) {
             System.out.println(e);
         } catch (IOException e) {
             System.out.println(e);
+        }
+        for (int i = 0; i < filelist.size(); i++) {
+            ArrayList<String> datalist = new ArrayList<>();
+            if (filelist.get(i) == ',') {
+                continue;
+            }
+            for (int j = 0; j < 3; i++, j++) {
+                datalist.add(String.valueOf(filelist.get(i)));
+            }
+            pData.setPenCode(datalist.get(0));
+            datalist.add(pData.getLimit());
+            // リストに追加
+            datalists.add(datalist);
         }
     }
 

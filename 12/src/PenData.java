@@ -4,10 +4,7 @@ public class PenData {
     ArrayList<ArrayList<String>> penlist = new ArrayList<ArrayList<String>>();
     String limit;
     String penname;
-
     PenData() {
-        limit = "-999";
-        penname = "-999";
         ArrayList<String> mannenhitu = new ArrayList<String>();
         mannenhitu.add("F");
         mannenhitu.add("2");
@@ -31,8 +28,9 @@ public class PenData {
     public void setPenCode(String n_pen) {
         for (int i = 0; i < penlist.size(); i++) {
             if (penlist.get(i).get(0) == n_pen) {
-                this.limit = penlist.get(i).get(1);
-                this.penname = penlist.get(i).get(2);
+                limit = penlist.get(i).get(1);
+                penname = penlist.get(i).get(2);
+                System.out.println("enter");
             }
         }
     }

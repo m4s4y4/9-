@@ -3,9 +3,8 @@ public class App {
         FileRead foo = new FileRead("12/src/testtext.txt");
         foo.MakeDataList();
         System.out.println(foo.getFileData());
-        // CalcCartridge c = new CalcCartridge(foo.getFileData());
-        // c.show();
-        // System.out.println(foo);
+        CalcCartridge c = new CalcCartridge(foo.getFileData());
+        c.show();
 
     }
 }
