@@ -23,14 +23,13 @@ public class PenData {
         fude.add("筆");
         penlist.add(fude);
     }
-
+    // Nullしか帰ってこない！！！！！！！！！！！！！！いけない！！！！！！！！！！！！！
     // 存在するか
     public void setPenCode(String n_pen) {
         for (int i = 0; i < penlist.size(); i++) {
             if (penlist.get(i).get(0) == n_pen) {
                 limit = penlist.get(i).get(1);
                 penname = penlist.get(i).get(2);
-                System.out.println("enter");
             }
         }
     }

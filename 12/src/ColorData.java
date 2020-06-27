@@ -33,7 +33,7 @@ public  class ColorData{
     public void setColorCode(String color) {
         for (int i = 0; i < colorlist.size(); i++) {
             if (Integer.parseInt(colorlist.get(i).get(0)) == Integer.parseInt(color)) {
-                this.colorcode = colorlist.get(i).get(0);
+                this.colorcode = color;
                 this.colorname = colorlist.get(i).get(1);
             }
             else{

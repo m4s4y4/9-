@@ -37,8 +37,11 @@ public class FileRead {
             for (int j = 0; j < 3; i++, j++) {
                 datalist.add(String.valueOf(filelist.get(i)));
             }
+            //Nullしか帰ってこない！！！！！！！！！！！！！！いけない！！！！！！！！！！！！！
+            System.out.println(datalist.get(0));
             pData.setPenCode(datalist.get(0));
             datalist.add(pData.getLimit());
+            System.out.println(pData.getLimit());
             // リストに追加
             datalists.add(datalist);
         }

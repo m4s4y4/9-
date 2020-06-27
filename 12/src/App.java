@@ -4,6 +4,7 @@ public class App {
         foo.MakeDataList();
         System.out.println(foo.getFileData());
         CalcCartridge c = new CalcCartridge(foo.getFileData());
+        c.InnerChangeCartridge();
         c.show();
 
     }
