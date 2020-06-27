@@ -38,10 +38,8 @@ public class FileRead {
                 datalist.add(String.valueOf(filelist.get(i)));
             }
             //Nullしか帰ってこない！！！！！！！！！！！！！！いけない！！！！！！！！！！！！！
-            System.out.println(datalist.get(0));
             pData.setPenCode(datalist.get(0));
             datalist.add(pData.getLimit());
-            System.out.println(pData.getLimit());
             // リストに追加
             datalists.add(datalist);
         }

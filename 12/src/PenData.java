@@ -30,6 +30,7 @@ public class PenData {
             if (penlist.get(i).get(0) == n_pen) {
                 limit = penlist.get(i).get(1);
                 penname = penlist.get(i).get(2);
+                break;
             }
         }
     }
