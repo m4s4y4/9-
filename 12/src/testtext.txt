@@ -1,1 +1,1 @@
-Sla,B2C,F0d,F7Z,S0q,F7A
+B2C,Sla,F0d,F7Z,S0q,F7A
