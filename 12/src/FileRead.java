@@ -9,15 +9,15 @@ public class FileRead {
     ArrayList<ArrayList<String>> datalists = new ArrayList<ArrayList<String>>();
     ArrayList<String> datalist = new ArrayList<String>();
 
-    FileRead() {
-        filename = "-999";
+    FileRead(String filename) {
+        this.filename = filename;
     }
 
     public void MakeDataList() {
         try {
             File file = new File(filename);
             FileReader filereader = new FileReader(file);
-            IData pData = new PenData();
+            PenData pData = new PenData();
 
             while (true) {
                 datalists.clear();
@@ -28,13 +28,12 @@ public class FileRead {
                 if (String.valueOf(filereader.read()) != ",") {
                     filereader.read();
                 }
-                // 4,5
-                pData.setItem(datalist.get(0));
-                datalist.add(String.valueOf(pData.getItem()));
-                datalist.add(String.valueOf(pData.getItem()));
-                //1~5をリストに追加
+                // 4
+                pData.setPenCode(datalist.get(0));
+                datalist.add(pData.getLimit());
+                // 1~4をリストに追加
                 datalists.add(datalist);
-                if (filereader.read() != -1) {//空ならば
+                if (filereader.read() != -1) {// 空ならば
                     break;
                 }
             }
@@ -44,12 +43,8 @@ public class FileRead {
         } catch (IOException e) {
             System.out.println(e);
         }
-
     }
 
-    public void setFileName(String fileString) {
-        filename = fileString;
-    }
     public ArrayList<ArrayList<String>> getFileData() {
         return datalists;
     }

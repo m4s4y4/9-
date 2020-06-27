@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 
-public class PenData implements IData{
+public class PenData {
     ArrayList<ArrayList<String>> penlist = new ArrayList<ArrayList<String>>();
-    int limit;
-    PenData(){
-        limit = -999;
+    String limit;
+    String penname;
+
+    PenData() {
+        limit = "-999";
+        penname = "-999";
         ArrayList<String> mannenhitu = new ArrayList<String>();
         mannenhitu.add("F");
         mannenhitu.add("2");
@@ -24,17 +27,21 @@ public class PenData implements IData{
         penlist.add(fude);
     }
 
-    //存在するか
-    public void setItem(String n_pen){
+    // 存在するか
+    public void setPenCode(String n_pen) {
         for (int i = 0; i < penlist.size(); i++) {
             if (penlist.get(i).get(0) == n_pen) {
-                limit = Integer.parseInt(penlist.get(i).get(1));
+                this.limit = penlist.get(i).get(1);
+                this.penname = penlist.get(i).get(2);
             }
         }
     }
-
-    //無ければ-999を返す
-    public int getItem(){
+    // 無ければ-999を返す
+    public String getLimit() {
         return limit;
+    }
+
+    public String getPenName(){
+        return penname;
     }
 }

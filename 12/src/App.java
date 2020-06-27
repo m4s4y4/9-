@@ -1,9 +1,9 @@
 public class App {
     public static void main(String[] args) {
-        FileRead foo2 = new FileRead();
-        foo2.setFileName(args[0]);
-        foo2.MakeDataList();
-        CalcCartridge c = new CalcCartridge(foo2.getFileData());
+        FileRead foo = new FileRead("testtext.txt");
+        foo.MakeDataList();
+        CalcCartridge c = new CalcCartridge(foo.getFileData());
+        c.show();
         // System.out.println(foo);
 
     }

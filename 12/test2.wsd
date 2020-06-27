@@ -1,29 +1,31 @@
 @startuml
 title test
-ChangeCartridge <|-- ColorDeta
-ChangeCartridge <|-- PenDeta
+CalcCartridge <|-- ColorData
+CalcCartridge <|-- PenData
+CalcCartridge <|-- Filereader
+Filereader <|-- PenData
 
-class PenDeta{
-    pen
+class CalcCartridge{
+    calclist
+    usedlist
+    show()
+}
+
+
+class PenData{
+    pen_code
     limit
-
-    setPen()
-    getLimit()
 }
 
-class ColorDeta{
-    colornum
-
-    setColor()
-    getColor()
-}
-
-class ChangeCartridge{
-
+class ColorData{
+    color_num
 }
 
 class Filereader{
-    fileread
+    filename
+    filedatalist
+    setFileDataList()
+    getFileName()
 }
 
 @enduml
