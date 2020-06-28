@@ -1,1 +1,1 @@
-B2d,S1a,F0d,F7Z,S0q,F7A
+B7d,S7a,F7d,F7Z,S7q,F7A

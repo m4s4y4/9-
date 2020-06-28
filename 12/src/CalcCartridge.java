@@ -6,10 +6,6 @@ public class CalcCartridge {
     ArrayList<ArrayList<String>> penlists = new ArrayList<>();
     ColorData foo = new ColorData();
     int sum;
-    int cnt_j;
-    boolean penexist = false;
-    boolean pennotexist = false;
-    boolean flg = false;
 
     CalcCartridge(ArrayList<ArrayList<String>> filedatalist) {
         this.filedatalist = filedatalist;
@@ -17,42 +13,45 @@ public class CalcCartridge {
 
     public void ChangeCartridge() {
         // 計算するデータ
-        for (int cntflist = 0; cntflist < filedatalist.size(); cntflist++) {
+        for (int cnt_fl = 0; cnt_fl < filedatalist.size(); cnt_fl++) {
+            boolean colorfound = false;
+            boolean flg = false;
             // 計算用のペンリスト
-            ArrayList<String> penlist = new ArrayList<>();
-            ArrayList<Integer> colorlist = new ArrayList<>();
-            // ペンがある
+            ArrayList<String> penlist = new ArrayList<>();// ペンのコード,今の色,limit
+            ArrayList<Integer> colorlist = new ArrayList<>();// 色のコード,カートリッジの本数
             System.out.println(penlists);
-            System.out.println(colorlist);
-            for (int k = 0; k < penlists.size(); k++) {
-                if (penlists.get(k).get(0) == filedatalist.get(cntflist).get(0)) {
-                    // 色が一緒
-                    if (penlists.get(k).get(1) == filedatalist.get(cntflist).get(1)) {
-                        // 色がある
-                        for (cnt_j = 0; cnt_j < colorlists.size(); cnt_j++) {
-                            if (String.valueOf(colorlists.get(cnt_j).get(0)) == filedatalist.get(cntflist).get(1)) {
-                                colorlists.get(cnt_j).set(1, colorlists.get(cnt_j).get(1) + 1);
-                                break;
+            System.out.println(colorlists);
+            // ペンがある
+            for (int cnt_p = 0; cnt_p < penlists.size(); cnt_p++) {
+                if (penlists.get(cnt_p).get(0) == filedatalist.get(cnt_fl).get(0)) {
+                    // 色がある
+                    for (int cnt_c = 0; cnt_c < colorlists.size(); cnt_c++) {
+                        if (String.valueOf(colorlists.get(cnt_c).get(0)) == filedatalist.get(cnt_fl).get(1)) {
+                            // 色が一緒
+                            if (penlists.get(cnt_p).get(1) == filedatalist.get(cnt_fl).get(1)) {
+                                // limit減産
+                                penlists.get(cnt_p).set(2,
+                                        String.valueOf(Integer.parseInt(penlists.get(cnt_p).get(2)) - 1));
+                                if (penlists.get(cnt_p).get(2) == "0") {
+                                    penlists.get(cnt_p).set(2, filedatalist.get(cnt_fl).get(3));
+                                    colorlists.get(cnt_c).set(1, colorlists.get(cnt_c).get(1) + 1);
+                                }
                             }
-                        }
-                        // 色が違う
-                        //elseは使えない！！！！！！！！！！！！！
-                    } else {
-                        penlists.get(k).set(1, filedatalist.get(cntflist).get(1));
-                        // 色がある
-                        for (cnt_j = 0; cnt_j < colorlists.size(); cnt_j++) {
-                            if (String.valueOf(colorlists.get(cnt_j).get(0)) == filedatalist.get(cntflist).get(1)) {
-                                colorlists.get(cnt_j).set(1, colorlists.get(cnt_j).get(1) + 1);
-                                penexist = true;
-                                break;
+                            // 色が違う
+                            else {
+                                penlists.get(cnt_p).set(1, filedatalist.get(cnt_fl).get(1));// 新しい色をセット
+                                colorlists.get(cnt_c).set(1, colorlists.get(cnt_c).get(1) + 1);
                             }
+                            colorfound = true;
+                            break;
                         }
-                        // 色がない
-                        if (!penexist) {
-                            colorlist.add(Integer.parseInt(filedatalist.get(cntflist).get(1)));
-                            colorlist.add(1);
-                            colorlists.add(colorlist);
-                        }
+                    }
+                    // 色がない
+                    if (!colorfound) {
+                        colorlist.add(Integer.parseInt(filedatalist.get(cnt_fl).get(1)));
+                        colorlist.add(1);
+                        colorlists.add(colorlist);
+                        System.out.println("colorlists"+colorlists);
                     }
                     flg = true;
                     break;
@@ -60,21 +59,31 @@ public class CalcCartridge {
             }
             // ペンがない
             if (!flg) {
-                penlist.add(filedatalist.get(cntflist).get(0));
-                penlist.add(filedatalist.get(cntflist).get(1));
+                penlist.add(filedatalist.get(cnt_fl).get(0));
+                penlist.add(filedatalist.get(cnt_fl).get(1));
+                penlist.add(filedatalist.get(cnt_fl).get(3));
                 penlists.add(penlist);
-                // 計算用の色リスト
-                for (cnt_j = 0; cnt_j < colorlists.size(); cnt_j++) {
-                    // 色がある
-                    if (String.valueOf(colorlists.get(cnt_j).get(0)) == filedatalist.get(cntflist).get(1)) {
-                        colorlists.get(cnt_j).set(1, colorlists.get(cnt_j).get(1) + 1);
-                        pennotexist = true;
+                // 色がある
+                for (int cnt_c = 0; cnt_c < colorlists.size(); cnt_c++) {
+                    //
+                    //同じなのにif文が機能していない！！！！！
+                    //
+                    System.out.println(String.valueOf(colorlists.get(cnt_c).get(0)));
+                    System.out.println(filedatalist.get(cnt_fl).get(1));
+                    System.out.println(String.valueOf(colorlists.get(cnt_c).get(0)) == filedatalist.get(cnt_fl).get(1));
+                    if (String.valueOf(colorlists.get(cnt_c).get(0)) == filedatalist.get(cnt_fl).get(1)) {
+                        colorlists.get(cnt_c).set(1, colorlists.get(cnt_c).get(1) + 1);
+                        colorfound = true;
+                        System.out.println("samecolor");
                         break;
                     }
+                    //
+                    //
+                    //
                 }
                 // 色がない
-                if (!pennotexist) {
-                    colorlist.add(Integer.parseInt(filedatalist.get(cnt_j).get(1)));
+                if (!colorfound) {
+                    colorlist.add(Integer.parseInt(filedatalist.get(cnt_fl).get(1)));
                     colorlist.add(1);
                     colorlists.add(colorlist);
                 }
@@ -87,14 +96,14 @@ public class CalcCartridge {
     }
 
     public void show() {
-        for (int cntflist = 0; cntflist < filedatalist.size(); cntflist++) {
-            System.out.print("Type =" + filedatalist.get(cntflist).get(0));
-            System.out.print(", Color =" + filedatalist.get(cntflist).get(1));
-            System.out.println(", Let =" + filedatalist.get(cntflist).get(2));
+        for (int cnt_fl = 0; cnt_fl < filedatalist.size(); cnt_fl++) {
+            System.out.print("Type =" + filedatalist.get(cnt_fl).get(0));
+            System.out.print(", Color =" + filedatalist.get(cnt_fl).get(1));
+            System.out.println(", Let =" + filedatalist.get(cnt_fl).get(2));
         }
-        for (int cntflist = 0; cntflist < colorlists.size(); cntflist++) {
-            foo.setColorCode(String.valueOf(colorlists.get(cntflist).get(0)));
-            System.out.println(foo.getColorName() + "カートリッジ発行数 :" + colorlists.get(cntflist).get(1));
+        for (int cnt_fl = 0; cnt_fl < colorlists.size(); cnt_fl++) {
+            foo.setColorCode(String.valueOf(colorlists.get(cnt_fl).get(0)));
+            System.out.println(foo.getColorName() + "カートリッジ発行数 :" + colorlists.get(cnt_fl).get(1));
         }
         System.out.println("======================");
         System.out.println("カートリッジ合計数 :" + sum);
