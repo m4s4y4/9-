@@ -32,9 +32,10 @@ public  class ColorData{
     // 存在するかどうか
     public void setColorCode(String color) {
         for (int i = 0; i < colorlist.size(); i++) {
-            if (Integer.parseInt(colorlist.get(i).get(0)) == Integer.parseInt(color)) {
+            if (colorlist.get(i).get(0).equals(color)) {
                 this.colorcode = color;
                 this.colorname = colorlist.get(i).get(1);
+                break;
             }
             else{
                 this.colorname = "Unknown";

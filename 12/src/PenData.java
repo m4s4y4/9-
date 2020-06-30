@@ -27,7 +27,7 @@ public class PenData {
     // 存在するか
     public void setPenCode(String n_pen) {
         for (int i = 0; i < penlist.size(); i++) {
-            if (penlist.get(i).get(0) == n_pen) {
+            if (penlist.get(i).get(0).equals(n_pen)) {
                 limit = penlist.get(i).get(1);
                 penname = penlist.get(i).get(2);
                 break;
