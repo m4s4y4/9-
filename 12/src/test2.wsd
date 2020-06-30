@@ -1,0 +1,47 @@
+@startuml
+title test
+CalcCartridge -- ColorData
+CalcCartridge -- Fileread
+Fileread -- PenData
+
+class CalcCartridge{
+    filedatalist
+    colorlists
+    penlists
+    sum
+    show()
+}
+
+class PenData{
+    penname
+    limit
+    setPenCode()
+    getLimit()
+    getPenName()
+}
+
+class ColorData{
+    colorcode
+    colorname
+    setColorCode()
+    getColorName()
+}
+
+class Fileread{
+    filename
+    datalists
+    getFileData()
+}
+
+@enduml
+
+@startuml sequence
+
+Main -> FileRead:DoWork
+activate FileRead
+FileRead -> PenData:DoWork
+PenData -> FileRead:DoWork
+return filedatalist
+Main -> CalcCartridge:DoWork
+Main -> CalcCartridge:ToShowResult
+@enduml

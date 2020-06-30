@@ -19,8 +19,7 @@ public class CalcCartridge {
             // 計算用のペンリスト
             ArrayList<String> penlist = new ArrayList<>();// ペンのコード,今の色,limit
             ArrayList<Integer> colorlist = new ArrayList<>();// 色のコード,カートリッジの本数
-            System.out.println(penlists);
-            System.out.println(colorlists);
+
             // ペンがある
             for (int cnt_p = 0; cnt_p < penlists.size(); cnt_p++) {
                 if (penlists.get(cnt_p).get(0).equals(filedatalist.get(cnt_fl).get(0))) {
@@ -77,6 +76,8 @@ public class CalcCartridge {
                     colorlists.add(colorlist);
                 }
             }
+            // System.out.println(penlists);
+            // System.out.println(colorlists);
         }
         // カートリッジの合計
         for (int i = 0; i < colorlists.size(); i++) {
@@ -94,7 +95,7 @@ public class CalcCartridge {
             foo.setColorCode(String.valueOf(colorlists.get(cnt_fl).get(0)));
             System.out.println(foo.getColorName() + "カートリッジ発行数 :" + colorlists.get(cnt_fl).get(1));
         }
-        System.out.println("");
+        System.out.println("=============================");
         System.out.println("カートリッジ合計数 :" + sum);
     }
 

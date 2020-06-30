@@ -6,8 +6,6 @@ public  class ColorData{
     String colorname;
 
     ColorData() {
-        colorname = "-999";
-        colorcode = "-999";
         ArrayList<String> black = new ArrayList<String>();
         black.add("0");
         black.add("黒");
@@ -42,7 +40,6 @@ public  class ColorData{
             }
         }
     }
-    //無ければ-999を返す
     public String getColorName() {
         return colorname;
     }
