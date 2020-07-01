@@ -40,8 +40,18 @@ class Fileread{
 Main -> FileRead:DoWork
 activate FileRead
 FileRead -> PenData:DoWork
-PenData -> FileRead:DoWork
+activate PenData
+return Done
 return filedatalist
 Main -> CalcCartridge:DoWork
+activate CalcCartridge
+CalcCartridge -> CalcCartridge:calc
 Main -> CalcCartridge:ToShowResult
+CalcCartridge ->ColorData:DoWork
+activate ColorData
+return colorname
+CalcCartridge -> CalcCartridge:show
+return done
+
 @enduml
+
